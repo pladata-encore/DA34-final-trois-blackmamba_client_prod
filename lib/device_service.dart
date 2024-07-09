@@ -40,7 +40,7 @@ class DeviceService extends ChangeNotifier {
       getCarMenuList() async {
     try {
       final response = await _dio
-          .get('https://dn4gad2bda.ap-northeast-1.awsapprunner.com/carmenu');
+          .get('https://drivetalk-app-j5mv4ohetq-du.a.run.app/carmenu');
 
       if (response.statusCode == 200) {
         final data = response.data as Map<String, dynamic>;
@@ -75,7 +75,7 @@ class DeviceService extends ChangeNotifier {
       print("createDevice에서 넘겨받은 cid : $cid");
 
       final response = await _dio.post(
-        'https://dn4gad2bda.ap-northeast-1.awsapprunner.com/devices',
+        'https://drivetalk-app-j5mv4ohetq-du.a.run.app/devices',
         data: {'userAgent': userAgent, 'cid': cid},
         options: Options(
           headers: {'Content-Type': 'application/json; charset=UTF-8'},
@@ -122,7 +122,7 @@ class DeviceService extends ChangeNotifier {
     print("updateDevice에서 넘겨받은 cid : $cid");
     try {
       final response = await _dio.put(
-        'https://dn4gad2bda.ap-northeast-1.awsapprunner.com/devices/$uid',
+        'https://drivetalk-app-j5mv4ohetq-du.a.run.app/devices/$uid',
         data: {'cid': cid},
         options: Options(
           headers: {'Content-Type': 'application/json; charset=UTF-8'},

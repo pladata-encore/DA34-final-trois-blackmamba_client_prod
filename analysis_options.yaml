@@ -9,6 +9,7 @@
 # packages, and plugins designed to encourage good coding practices.
 analyzer:
   errors:
+    depend_on_referenced_packages: ignore
     use_key_in_widget_constructors: ignore
 include: package:flutter_lints/flutter.yaml
 

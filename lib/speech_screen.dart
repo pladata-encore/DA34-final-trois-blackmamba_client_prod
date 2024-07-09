@@ -194,8 +194,9 @@ class _SpeechScreenState extends State<SpeechScreen> {
       isLoading = true; // Start loading
     });
 
-    var url =
-        'https://2tcihkmmep.ap-northeast-1.awsapprunner.com/query?query=$query';
+    // var url =
+    //     'https://2tcihkmmep.ap-northeast-1.awsapprunner.com/query?query=$query';
+    var url = 'https://langchain-j5mv4ohetq-du.a.run.app/query?query=$query';
 
     try {
       var response = await dio.get(url);
@@ -251,8 +252,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
     print("저장하는 메시지 내용은 $data");
 
     try {
-      await dio.post(
-          'https://dn4gad2bda.ap-northeast-1.awsapprunner.com/messages',
+      await dio.post('https://drivetalk-app-j5mv4ohetq-du.a.run.app/messages',
           data: data);
       print("메시지 저장에 성공했습니다.");
     } catch (e) {

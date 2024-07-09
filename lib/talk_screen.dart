@@ -64,7 +64,7 @@ class _TalkScreenState extends State<TalkScreen> {
 
     try {
       var response = await dio.get(
-        'https://dn4gad2bda.ap-northeast-1.awsapprunner.com/messages',
+        'https://drivetalk-app-j5mv4ohetq-du.a.run.app/messages',
         queryParameters: {'uid': uid, 'skip': skip, 'limit': 30},
       );
 
@@ -165,7 +165,7 @@ class _TalkScreenState extends State<TalkScreen> {
 
     try {
       await dio.post(
-        'https://dn4gad2bda.ap-northeast-1.awsapprunner.com/messages',
+        'https://drivetalk-app-j5mv4ohetq-du.a.run.app/messages',
         data: data,
       );
       print("메시지 저장에 성공했습니다.");
@@ -175,34 +175,15 @@ class _TalkScreenState extends State<TalkScreen> {
   }
 
   Future<String> sendMessageToServer(String message) async {
-    await dotenv.load(fileName: ".env");
-    String? openaiKey = dotenv.env['OPENAI_API_KEY'];
-    var headers = {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer $openaiKey',
-    };
-    var data = json.encode({
-      "model": "gpt-4",
-      "messages": [
-        {
-          "role": "user",
-          "content": message,
-        }
-      ]
-    });
+    String requestUrl =
+        'https://langchain-j5mv4ohetq-du.a.run.app/query?query=$message';
 
     try {
-      var response = await dio.post(
-        'https://api.openai.com/v1/chat/completions',
-        options: Options(headers: headers),
-        data: data,
-      );
+      var response = await dio.get(requestUrl);
 
       if (response.statusCode == 200) {
         Map<String, dynamic> jsonResponse = response.data;
-        String result = jsonResponse['choices'] != null
-            ? jsonResponse['choices'][0]['message']['content']
-            : "저도 잘 모르겠어요. 좀 더 열심히 공부할께요.";
+        String result = jsonResponse['answer'] ?? "저도 잘 모르겠어요. 좀 더 열심히 공부할께요.";
         print(response.data);
         return result;
       } else {
