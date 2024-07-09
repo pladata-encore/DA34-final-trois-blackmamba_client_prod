@@ -391,7 +391,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
               bottom: 70.0,
               left: 0.0,
               right: 0.0,
-              child: Container(
+              child: SizedBox(
                 height: 200.0,
                 child: YoutubePlayer(
                   controller: _youtubePlayerController!,

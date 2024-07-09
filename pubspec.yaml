@@ -49,6 +49,7 @@ dependencies:
   youtube_player_flutter: ^8.1.2
   # package_info_plus: ^8.0.0
 
+  flutter_markdown: any
 dev_dependencies:
   flutter_test:
     sdk: flutter
